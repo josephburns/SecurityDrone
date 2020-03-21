@@ -1678,7 +1678,7 @@ drone.jumpTo(droneSilo);
 					<Action><![CDATA[if(pursuing) {
 	moveTo(main.burglar.getX(), main.burglar.getY());
 } else {
-	moveTo(droneSilo);
+	moveTo(main.droneSilo);
 }]]></Action>
 				</Event>
 			</Events>
