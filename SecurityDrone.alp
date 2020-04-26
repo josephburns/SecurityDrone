@@ -201,6 +201,30 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1587918643969</Id>
+					<Name><![CDATA[avgDeterredTime]]></Name>
+					<X>1410</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1587918679876</Id>
+					<Name><![CDATA[avgEndingFearLevel]]></Name>
+					<X>1410</X><Y>130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1584846494138</Id>
 					<Name><![CDATA[uniformFearDispositionMin]]></Name>
@@ -338,6 +362,36 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 							<DelimeterType>NO_DELIMETER</DelimeterType>
 						</ParameterEditor>
 					</Properties>                 
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1587918499468</Id>
+					<Name><![CDATA[deterredTimes]]></Name>
+					<X>1370</X><Y>350</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[Integer]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1587918593834</Id>
+					<Name><![CDATA[endingFearLevels]]></Name>
+					<X>1370</X><Y>390</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[Integer]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
 				</Variable>
 			</Variables>
 			<AgentLinks>
@@ -1425,7 +1479,7 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 				<RoundedRectangle>
 					<Id>1587869860869</Id>
 					<Name><![CDATA[roundRectangle2]]></Name>
-					<X>10</X><Y>550</Y>
+					<X>10</X><Y>534</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1438,8 +1492,8 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>130</Width>
-					<Height>40</Height>
+					<Width>210</Width>
+					<Height>60</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -1448,7 +1502,7 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 				<Text>
 					<Id>1587869911151</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>20</X><Y>560</Y>
+					<X>30</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1459,7 +1513,9 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 					<Rotation>0.0</Rotation>
 					<Color>-8388608</Color>
 					<Text><![CDATA["Fear Tolerance: " + fearToleranceLevel]]></Text>
-					<TextCode><![CDATA["Fear Tolerance: " + fearToleranceLevel]]></TextCode>
+					<TextCode><![CDATA["Fear Tolerance: " + fearToleranceLevel + "\n"
++ "Avg Deterred Time: " + avgDeterredTime + "\n"
++ "Avg Ending Fear Level: " + avgEndingFearLevel]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -1688,6 +1744,36 @@ neSensor.jumpTo(house.getX() + house.getWidth(), house.getY());
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1587918898333</Id>
+					<Name><![CDATA[deterTimer]]></Name>
+					<X>-130</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1587918960461</Id>
+					<Name><![CDATA[active]]></Name>
+					<X>-130</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1583968703801</Id>
 					<Name><![CDATA[fearDisposition]]></Name>
@@ -1751,10 +1837,25 @@ if(main.mainPath) {
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Properties>	
-						<Action><![CDATA[jumpTo(-500.0, -500.0);
+						<Action><![CDATA[// move this burglar off of the canvas
+jumpTo(-500.0, -500.0);
+
+// add to ending fear level collection
+main.endingFearLevels.add(fearLevel);
+
+// recalculate avgEndingFearLevel
+int sum = 0;
+for(int aFearLevel : main.endingFearLevels) {
+	sum += aFearLevel;
+}
+main.avgEndingFearLevel = (int)Math.floor(sum / main.endingFearLevels.size());
+
+// move on to the next burglar
 if(main.burglarIndex < 99) {
 	main.burglarIndex++;
 }
+
+// help the drone back to the silo to 'reset' for next burglar
 main.drone.jumpTo(main.droneSilo);]]></Action>
 					</Properties>	
 				</StatechartElement>
@@ -1772,7 +1873,19 @@ main.drone.jumpTo(main.droneSilo);]]></Action>
 }
 else {
 	moveTo(main.alternateStart);
-}]]></EntryAction>
+}
+active = false;
+
+// this burglar was deterred - add the time to deterredTimes
+main.deterredTimes.add(deterTimer);
+
+// now recalculate deterred time
+int sum = 0;
+for(int aTime : main.deterredTimes) {
+	sum += aTime;
+}
+main.avgDeterredTime = (int)Math.floor(sum / main.deterredTimes.size());
+]]></EntryAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -2022,6 +2135,7 @@ else {
 					</Points>
 					<IconOffset>20.0</IconOffset>
 					<Properties Source="1587866128995" Target="1583969988352" Trigger="condition">
+						<Action><![CDATA[active = true]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -2074,6 +2188,9 @@ else {
  	if (this.fearLevel < 100 && this.enterState.getState() != finalState) {
  		this.fearLevel += 2 * main.droneFearInduction;
  	}
+ }
+ if(active == true) {
+ 	deterTimer++;
  }]]></Action>
 				</Event>
 			</Events>
